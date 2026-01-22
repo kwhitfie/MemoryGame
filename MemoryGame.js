@@ -8,12 +8,12 @@ class Card {
 
     // div class="card-container">
     //     <div class="card-inner">
-    //       <div class="card-front"></div>
-    //       <div class="card-back"></div>
+    //       <div class="card-front"><img id = "card-front__img" /></div>
+    //       <div class="card-back"><img id = "card-back__img" /></div>
     //     </div>
     //   </div>
 
-    this.cardContainer = document.createElement("div");
+    this.cardContainer = document.createElement("button");
     this.cardContainer.setAttribute("class", "card-container");
 
     this.cardInner = document.createElement("div");
@@ -24,16 +24,34 @@ class Card {
 
     this.cardBack = document.createElement("div");
     this.cardBack.setAttribute("class", "card-back");
-    this.img = document.createElement("img");
-    this.img.setAttribute("src", image);
-    this.img.setAttribute("class", "card-back__img");
+    this.cardBack.style.background = `url(${image})`;
+    this.cardBack.style.backgroundRepeat = "no-repeat";
+    this.cardBack.style.backgroundSize = "cover";
 
     this.cardContainer.appendChild(this.cardInner);
     this.cardInner.appendChild(this.cardFront);
     this.cardInner.appendChild(this.cardBack);
-    this.cardBack.appendChild(this.img);
     document.getElementById("grid-container").appendChild(this.cardContainer);
+    this.cardContainer.addEventListener("click", this.Flip);
   }
+
+  Flip = () => {
+    if (this.isFlipped) {
+      this.cardInner.style.transform = "rotateY(180deg)";
+      this.isFlipped = true;
+    } else {
+      this.cardInner.style.transform = "rotateY(-180deg)";
+      this.isFlipped = false;
+    }
+  };
 }
 
-const testCard = new Card(1, "images/bleh.jpg");
+const generateGrid = (width, height) => {
+  for (let column = 0; column < height; column++) {
+    for (let row = 0; row < width; row++) {
+      const card = new Card(1, "images/blah.jpg");
+    }
+  }
+};
+
+generateGrid(4, 4);

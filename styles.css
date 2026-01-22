@@ -1,3 +1,24 @@
+#grid-container {
+  display: grid;
+  height: 50%;
+  width: 50%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 0px;
+}
+
+body {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1,
+#game-info {
+  margin: 0;
+}
+
 .card-container {
   perspective: 1000px;
   width: 100px;
@@ -22,21 +43,22 @@
   backface-visibility: hidden;
 }
 
-.card-container:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
 .card-front {
-  background-color: #bbb;
+  background: url("images/bleh.jpg") no-repeat;
+  background-size: cover;
+  background-color: aqua;
   color: black;
 }
 
 .card-back {
-  background-color: dodgerblue;
   color: white;
   transform: rotateY(180deg);
 }
 .card-back__img {
   width: 100px;
   height: 100px;
+}
+
+button {
+  border: none;
 }
