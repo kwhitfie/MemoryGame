@@ -155,8 +155,11 @@ const checkPair = (card1, card2) => {
   if (card1.id === card2.id) {
     card1.isMatched = true;
     card1.isFlipped = false;
+    card1.cardContainer.style.opacity = "0.5";
+
     card2.isMatched = true;
     card2.isFlipped = false;
+    card2.cardContainer.style.opacity = "0.5";
   } else {
     card1.UnFlip();
     card2.UnFlip();

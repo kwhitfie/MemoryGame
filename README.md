@@ -27,9 +27,9 @@ Classic memory game where you match pairs of tiles in a grid in a set amount of 
 - [x] Check if matched (card1, card2) => Check if ids match. If false, change both states to unflipped, if true, change both states to matched and increment total amount of matched pairs. Decrement no of turns remaining
 - [x] Array of cards that are currently flipped => if size of 2, check if matched then reset count to 0.
 - [x] Check win/lose state after each match check. If all pairs are matched => **Win**. If any pairs left unmatched when no of turns reaches 0 => **Lose**
-- [ ] Player should not be able to flip already matched cards and matched cards should look distinguishable from those in play
+- [x] Player should not be able to flip already matched cards and matched cards should look distinguishable from those in play
 
-### Optional - Stuff to add if I have time
+### Optional - Features to add if I have time
 
 - [x] Disable player input when card flip animation is playing
 - [ ] Multiple difficulties (bigger grids, less turns)
