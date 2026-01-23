@@ -44,7 +44,7 @@ h1,
 }
 
 .card-front {
-  background: url("images/bleh.jpg") no-repeat;
+  background: url("images/front.jpg") no-repeat;
   background-size: cover;
   background-color: aqua;
   color: black;

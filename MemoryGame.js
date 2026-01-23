@@ -37,19 +37,49 @@ class Card {
 
   Flip = () => {
     if (this.isFlipped) {
+      this.UnFlip();
+    } else {
       this.cardInner.style.transform = "rotateY(180deg)";
       this.isFlipped = true;
-    } else {
-      this.cardInner.style.transform = "rotateY(-180deg)";
-      this.isFlipped = false;
     }
+  };
+
+  UnFlip = () => {
+    this.cardInner.style.transform = "rotateY(0deg)";
+    this.isFlipped = false;
   };
 }
 
+const images = [
+  "images/1.jpg",
+  "images/2.jpg",
+  "images/3.jpg",
+  "images/4.jpg",
+  "images/5.jpg",
+  "images/6.jpg",
+  "images/7.jpg",
+  "images/8.jpg",
+  "images/9.jpg",
+  "images/10.jpg",
+];
+let cards = [];
+
 const generateGrid = (width, height) => {
+  //Reset card array and shuffle the images
+  cards = [];
+  let noOfPairs = (width * height) / 2;
+  const shuffledImages = [...cards].sort(() => Math.random() - 0.5);
+
+  //Set grid size for the container
+  const gridContainer = document.getElementById("grid-container");
+  gridContainer.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
+  gridContainer.style.gridTemplateRows = `repeat(${height}, 1fr)`;
+
+  //Generate cards array using the number of pairs needed
+
   for (let column = 0; column < height; column++) {
     for (let row = 0; row < width; row++) {
-      const card = new Card(1, "images/blah.jpg");
+      const card = new Card(1, "images/1.jpg");
     }
   }
 };
