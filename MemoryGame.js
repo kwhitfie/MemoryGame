@@ -39,11 +39,22 @@ class Card {
   };
 
   Flip = () => {
-    if (this.isFlipped) {
-      this.UnFlip();
-    } else {
+    if (lockBoard || this.isFlipped || this.isMatched) return;
+
+    if (!this.isFlipped && !this.isMatched) {
       this.cardInner.style.transform = "rotateY(180deg)";
       this.isFlipped = true;
+    }
+
+    let flippedPairs = getFlippedPairs();
+    if (flippedPairs.length == 2) {
+      lockBoard = true;
+
+      setTimeout(() => {
+        checkPair(flippedPairs[0], flippedPairs[1]);
+        flippedPairs = [];
+        lockBoard = false;
+      }, 800);
     }
   };
 
@@ -66,8 +77,9 @@ const images = [
   "images/10.jpg",
 ];
 let cards = [];
+let lockBoard = false;
 let noOfPairs = 0;
-let noOfTurns = 100;
+let noOfTurns = 25;
 
 const generateGrid = (width, height) => {
   //Reset card array and shuffle the images
@@ -96,23 +108,24 @@ const generateGrid = (width, height) => {
   updateTurns();
 };
 
-const getNoOfFlippedPairs = () => {
-  const flipped = 0;
+const getFlippedPairs = () => {
+  const flipped = [];
   cards.map((e) => {
     if (e.isFlipped) {
-      flipped++;
+      flipped.push(e);
     }
   });
   return flipped;
 };
 
 const checkNoOfMatchedPairs = () => {
-  const matched = 0;
+  let matched = 0;
   cards.map((e) => {
     if (e.isMatched) {
       matched++;
     }
   });
+  matched = matched / 2;
   if (matched === noOfPairs) {
     //Win
   }
@@ -127,13 +140,16 @@ const updateTurns = () => {
 const checkPair = (card1, card2) => {
   if (card1.id === card2.id) {
     card1.isMatched = true;
+    card1.isFlipped = false;
     card2.isMatched = true;
+    card2.isFlipped = false;
   } else {
     card1.UnFlip();
     card2.UnFlip();
   }
+  checkNoOfMatchedPairs();
   if (noOfTurns > 0) {
-    noOfPairs--;
+    --noOfTurns;
     updateTurns();
   } else {
     //Lose
