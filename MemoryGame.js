@@ -128,7 +128,7 @@ const checkNoOfMatchedPairs = () => {
     }
   });
   matched = matched / 2;
-  if (matched === noOfPairs) {
+  if (matched == noOfPairs) {
     isGameOver = true;
     const turnInfo = document.getElementById("game-info");
     turnInfo.innerHTML = `You win!`;
@@ -153,7 +153,7 @@ const checkPair = (card1, card2) => {
     card2.UnFlip();
   }
   checkNoOfMatchedPairs();
-  if (noOfTurns > 0) {
+  if (!isGameOver && noOfTurns > 0) {
     --noOfTurns;
     updateTurns();
   }
