@@ -3,7 +3,10 @@ class Card {
     this.isMatched = false;
     this.isFlipped = false;
     this.id = id;
+    this.image = image;
+  }
 
+  Draw = () => {
     // Makes nested html elements that should be structured like so:
 
     // div class="card-container">
@@ -24,7 +27,7 @@ class Card {
 
     this.cardBack = document.createElement("div");
     this.cardBack.setAttribute("class", "card-back");
-    this.cardBack.style.background = `url(${image})`;
+    this.cardBack.style.background = `url(${this.image})`;
     this.cardBack.style.backgroundRepeat = "no-repeat";
     this.cardBack.style.backgroundSize = "cover";
 
@@ -33,7 +36,7 @@ class Card {
     this.cardInner.appendChild(this.cardBack);
     document.getElementById("grid-container").appendChild(this.cardContainer);
     this.cardContainer.addEventListener("click", this.Flip);
-  }
+  };
 
   Flip = () => {
     if (this.isFlipped) {
@@ -68,7 +71,7 @@ const generateGrid = (width, height) => {
   //Reset card array and shuffle the images
   cards = [];
   let noOfPairs = (width * height) / 2;
-  const shuffledImages = [...cards].sort(() => Math.random() - 0.5);
+  const shuffledImages = [...images].sort(() => Math.random() - 0.5);
 
   //Set grid size for the container
   const gridContainer = document.getElementById("grid-container");
@@ -76,12 +79,17 @@ const generateGrid = (width, height) => {
   gridContainer.style.gridTemplateRows = `repeat(${height}, 1fr)`;
 
   //Generate cards array using the number of pairs needed
-
-  for (let column = 0; column < height; column++) {
-    for (let row = 0; row < width; row++) {
-      const card = new Card(1, "images/1.jpg");
-    }
+  for (let i = 0; i < noOfPairs; i++) {
+    cards.push(new Card(i, shuffledImages[i]));
+    cards.push(new Card(i, shuffledImages[i]));
   }
+
+  //Shuffle cards then display on page
+  const shuffledCards = [...cards].sort(() => Math.random() - 0.5);
+
+  shuffledCards.forEach((element) => {
+    element.Draw();
+  });
 };
 
 generateGrid(4, 4);
