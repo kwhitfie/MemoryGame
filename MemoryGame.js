@@ -79,10 +79,18 @@ const images = [
 let cards = [];
 let lockBoard = false;
 let isGameOver = false;
-let noOfPairs = 0;
-let noOfTurns = 25;
+let maxNoOfTurns = 15;
+let currentWidth,
+  currentHeight,
+  noOfPairs,
+  noOfTurns = 0;
+const restartButton = document.getElementById("restart");
 
 const generateGrid = (width, height) => {
+  restartButton.style.display = "none";
+  currentWidth = width;
+  currentHeight = height;
+  noOfTurns = maxNoOfTurns;
   //Reset card array and shuffle the images
   cards = [];
   isGameOver = false;
@@ -132,6 +140,7 @@ const checkNoOfMatchedPairs = () => {
     isGameOver = true;
     const turnInfo = document.getElementById("game-info");
     turnInfo.innerHTML = `You win!`;
+    restartButton.style.display = "block";
     //Win
   }
   return matched;
@@ -161,8 +170,21 @@ const checkPair = (card1, card2) => {
     isGameOver = true;
     const turnInfo = document.getElementById("game-info");
     turnInfo.innerHTML = `You lose`;
+    restartButton.style.display = "block";
     //Lose
   }
 };
 
+Restart = () => {
+  //Removes all cards currently being rendered
+  const container = document.getElementById("grid-container");
+  while (container.firstChild) {
+    container.removeChild(container.lastChild);
+  }
+  generateGrid(currentWidth, currentHeight);
+};
+
+restartButton.onclick = () => {
+  Restart();
+};
 generateGrid(4, 4);
