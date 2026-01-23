@@ -39,7 +39,7 @@ class Card {
   };
 
   Flip = () => {
-    if (lockBoard || this.isFlipped || this.isMatched) return;
+    if (isGameOver || lockBoard || this.isFlipped || this.isMatched) return;
 
     if (!this.isFlipped && !this.isMatched) {
       this.cardInner.style.transform = "rotateY(180deg)";
@@ -78,12 +78,14 @@ const images = [
 ];
 let cards = [];
 let lockBoard = false;
+let isGameOver = false;
 let noOfPairs = 0;
 let noOfTurns = 25;
 
 const generateGrid = (width, height) => {
   //Reset card array and shuffle the images
   cards = [];
+  isGameOver = false;
   noOfPairs = (width * height) / 2;
   const shuffledImages = [...images].sort(() => Math.random() - 0.5);
 
@@ -127,6 +129,9 @@ const checkNoOfMatchedPairs = () => {
   });
   matched = matched / 2;
   if (matched === noOfPairs) {
+    isGameOver = true;
+    const turnInfo = document.getElementById("game-info");
+    turnInfo.innerHTML = `You win!`;
     //Win
   }
   return matched;
@@ -151,7 +156,11 @@ const checkPair = (card1, card2) => {
   if (noOfTurns > 0) {
     --noOfTurns;
     updateTurns();
-  } else {
+  }
+  if (noOfTurns == 0) {
+    isGameOver = true;
+    const turnInfo = document.getElementById("game-info");
+    turnInfo.innerHTML = `You lose`;
     //Lose
   }
 };
