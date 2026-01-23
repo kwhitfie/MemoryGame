@@ -66,11 +66,13 @@ const images = [
   "images/10.jpg",
 ];
 let cards = [];
+let noOfPairs = 0;
+let noOfTurns = 100;
 
 const generateGrid = (width, height) => {
   //Reset card array and shuffle the images
   cards = [];
-  let noOfPairs = (width * height) / 2;
+  noOfPairs = (width * height) / 2;
   const shuffledImages = [...images].sort(() => Math.random() - 0.5);
 
   //Set grid size for the container
@@ -90,6 +92,52 @@ const generateGrid = (width, height) => {
   shuffledCards.forEach((element) => {
     element.Draw();
   });
+
+  updateTurns();
+};
+
+const getNoOfFlippedPairs = () => {
+  const flipped = 0;
+  cards.map((e) => {
+    if (e.isFlipped) {
+      flipped++;
+    }
+  });
+  return flipped;
+};
+
+const checkNoOfMatchedPairs = () => {
+  const matched = 0;
+  cards.map((e) => {
+    if (e.isMatched) {
+      matched++;
+    }
+  });
+  if (matched === noOfPairs) {
+    //Win
+  }
+  return matched;
+};
+
+const updateTurns = () => {
+  const turnInfo = document.getElementById("game-info");
+  turnInfo.innerHTML = `Turns remaining: ${noOfTurns}`;
+};
+
+const checkPair = (card1, card2) => {
+  if (card1.id === card2.id) {
+    card1.isMatched = true;
+    card2.isMatched = true;
+  } else {
+    card1.UnFlip();
+    card2.UnFlip();
+  }
+  if (noOfTurns > 0) {
+    noOfPairs--;
+    updateTurns();
+  } else {
+    //Lose
+  }
 };
 
 generateGrid(4, 4);
