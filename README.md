@@ -11,7 +11,7 @@ Classic memory game where you match pairs of tiles in a grid in a set amount of 
 - [x] Create a grid of tiles, tiles have a flip and unflipped version with one being disabled depending on state
 - [x] Text showing amount of turns remaining, changes when game finishes to show victory/defeat
 - [x] Restart button that appears when game is over
-- [ ] Hand-drawn assets to be created and added
+- [x] Hand-drawn assets to be created and added
 - [ ] Correct styling on multiple resolutions and grid sizes
 
 ## Javascript
