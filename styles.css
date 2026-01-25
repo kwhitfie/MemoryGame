@@ -4,7 +4,13 @@
   width: 50%;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
+  align-items: center;
+  justify-content: center;
   grid-gap: 0px;
+}
+
+#title {
+  height: 20vh;
 }
 
 #restart {
@@ -47,9 +53,8 @@ h1,
 }
 
 .card-front {
-  background: url("images/front.jpg") no-repeat;
+  background: url("images/back.png") no-repeat;
   background-size: cover;
-  background-color: aqua;
   color: black;
 }
 
