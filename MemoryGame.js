@@ -83,12 +83,16 @@ let currentWidth,
   noOfPairs,
   noOfTurns = 0;
 const restartButton = document.getElementById("restart");
+const easyButton = document.querySelector(".difficulty__button--easy");
+const mediumButton = document.querySelector(".difficulty__button--medium");
+const hardButton = document.querySelector(".difficulty__button--hard");
 
-const generateGrid = (width, height) => {
+const generateGrid = (width, height, noTurns) => {
   restartButton.style.display = "none";
   currentWidth = width;
   currentHeight = height;
-  noOfTurns = maxNoOfTurns;
+  maxNoOfTurns = noTurns;
+  noOfTurns = noTurns;
   //Reset card array and shuffle the images
   cards = [];
   isGameOver = false;
@@ -183,10 +187,26 @@ Restart = () => {
   while (container.firstChild) {
     container.removeChild(container.lastChild);
   }
-  generateGrid(currentWidth, currentHeight);
 };
 
 restartButton.onclick = () => {
   Restart();
+  generateGrid(currentWidth, currentHeight, maxNoOfTurns);
 };
-generateGrid(4, 4);
+
+easyButton.onclick = () => {
+  Restart();
+  generateGrid(4, 2, 8);
+};
+
+mediumButton.onclick = () => {
+  Restart();
+  generateGrid(4, 3, 18);
+};
+
+hardButton.onclick = () => {
+  Restart();
+  generateGrid(4, 4, 15);
+};
+
+generateGrid(4, 2, 8);

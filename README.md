@@ -12,7 +12,7 @@ Classic memory game where you match pairs of tiles in a grid in a set amount of 
 - [x] Text showing amount of turns remaining, changes when game finishes to show victory/defeat
 - [x] Restart button that appears when game is over
 - [x] Hand-drawn assets to be created and added
-- [ ] Correct styling on multiple resolutions and grid sizes
+- [x] Correct styling on multiple resolutions and grid sizes
 
 ## Javascript
 
@@ -33,4 +33,4 @@ Classic memory game where you match pairs of tiles in a grid in a set amount of 
 ### Optional - Features to add if I have time
 
 - [x] Disable player input when card flip animation is playing
-- [ ] Multiple difficulties (bigger grids, less turns)
+- [x] Multiple difficulties (bigger grids, less turns)

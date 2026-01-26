@@ -1,4 +1,5 @@
 @use "./modules/colours" as colours;
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap");
 
 #grid-container {
   padding: 30px;
@@ -10,11 +11,45 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  box-shadow:
+    rgba(0, 0, 0, 0.09) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.difficulty {
+  width: 80vw;
+  max-width: 500px;
+  display: flex;
+}
+
+button {
+  border: none;
+}
+
+.difficulty__button,
+#restart {
+  font-family: "MuseoModerno", sans-serif;
+  height: 40px;
+  width: 30%;
+  margin: 10px;
+  background-color: colours.$camel;
+  border: 2px solid colours.$saddleBrown;
+  border-radius: 25px;
+  box-shadow:
+    rgba(93, 73, 50, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  &:hover {
+    background-color: colours.$toffeeBrown;
+  }
 }
 
 #title {
   //height: 20vh;
-  max-width: 80vw;
+  width: 80vw;
+  max-width: 500px;
 }
 
 #restart {
@@ -22,16 +57,27 @@
 }
 
 body {
+  font-family: "MuseoModerno", sans-serif;
   background-color: colours.$drySage;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 100px;
+  padding-top: 30px;
 }
 
-h1,
 #game-info {
-  margin: 0;
+  width: 80vw;
+  max-width: 500px;
+  height: 50px;
+  margin: 10px;
+  font-weight: bolder;
+  background-color: colours.$dustyOlive;
+  color: colours.$drySage;
+  text-align: center;
+  align-content: center;
+  border-radius: 25px;
 }
 
 .card-container {
@@ -39,7 +85,10 @@ h1,
   perspective: 1000px;
   width: 20%;
   aspect-ratio: 3 / 4;
-  background-color: transparent;
+  background-color: rgba(50, 50, 93, 0.1);
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .card-inner {
@@ -72,8 +121,4 @@ h1,
   &__img {
     background-size: cover;
   }
-}
-
-button {
-  border: none;
 }
