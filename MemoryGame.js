@@ -95,11 +95,6 @@ const generateGrid = (width, height) => {
   noOfPairs = (width * height) / 2;
   const shuffledImages = [...images].sort(() => Math.random() - 0.5);
 
-  //Set grid size for the container
-  const gridContainer = document.getElementById("grid-container");
-  gridContainer.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
-  gridContainer.style.gridTemplateRows = `repeat(${height}, 1fr)`;
-
   //Generate cards array using the number of pairs needed
   for (let i = 0; i < noOfPairs; i++) {
     cards.push(new Card(i, shuffledImages[i]));
@@ -111,6 +106,12 @@ const generateGrid = (width, height) => {
 
   shuffledCards.forEach((element) => {
     element.Draw();
+  });
+
+  //Set grid size for the container
+  const cardContainer = document.querySelectorAll(".card-container");
+  cardContainer.forEach((card) => {
+    card.style.width = `${(1 / (width + 1)) * 100}%`;
   });
 
   updateTurns();
